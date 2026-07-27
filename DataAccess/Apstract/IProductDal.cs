@@ -13,15 +13,8 @@ namespace DataAccess.Apstract
     //Dal = data access layer
     //javacılar buna dao = data access object te diyebiliyor 
 
-    public interface IProductDal
+    public interface IProductDal:IEntitiyRepository<Product>
     {
-        List<Product> GetAll();
-        // bunu yazınca normalde product altı cizili geliyor hata diyor ampüle tıklayıp add reference dicez 
-
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
-        List<Product> GetAllByCategory(int categoryId);
-
+    
     }
 }

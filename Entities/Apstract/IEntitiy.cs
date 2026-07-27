@@ -14,5 +14,6 @@ namespace Entities.Apstract
 
     public interface IEntitiy
     {
+
     }
 }
