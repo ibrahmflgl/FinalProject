@@ -1,5 +1,6 @@
 ﻿
-using Entities.Apstract;
+using Core.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Product : IEntitiy
+    //class cıplak kalmasın yav amac her yere product customer vs vs yazmadan tek isim ile IEntity den çağırmak 
+    public class Product : IEntity
     {
+        
+
         public int ProductId { get; set; }
         public int CategoryId { get; set; }
 

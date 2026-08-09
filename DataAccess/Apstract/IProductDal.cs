@@ -1,4 +1,6 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +15,9 @@ namespace DataAccess.Apstract
     //Dal = data access layer
     //javacılar buna dao = data access object te diyebiliyor 
 
-    public interface IProductDal:IEntitiyRepository<Product>
+    public interface IProductDal :IEntityRepository<Product>
     {
+        List<ProductDetailDto> GetProductDetails();
     
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DataAccess.Apstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,11 @@ namespace DataAccess.Concrete.InMemory
 
         List<Product> _products;
 
+
         public InMemoryProductDal()
         {
             // bu veriler sanki veritabanından geliyormuş gibi simule ediyoruz.
+
             _products = new List<Product>
             {
                 new Product { ProductId = 1, CategoryId = 1, ProductName = "Bardak", UnitPrice = 15, UnitsInStock = 15 },
@@ -25,9 +28,10 @@ namespace DataAccess.Concrete.InMemory
                 new Product { ProductId = 3, CategoryId = 2, ProductName = "Telefon", UnitPrice = 1500, UnitsInStock = 2 },
                 new Product { ProductId = 4, CategoryId = 2, ProductName = "Klavye", UnitPrice = 150, UnitsInStock = 65 },
                 new Product { ProductId = 5, CategoryId = 2, ProductName = "Fare", UnitPrice = 85, UnitsInStock = 1 }
-                
-            };
+
+            };       
         }
+
 
         public void Add(Product product)
         {
@@ -45,10 +49,7 @@ namespace DataAccess.Concrete.InMemory
             }
         }
 
-        public List<Product> GetAll()
-        {
-            return _products;
-        }
+       
         public void Update(Product product)
         {
             //gönderdiğim ürün id'sine sahip olan listedeki ürünü bul
@@ -68,15 +69,22 @@ namespace DataAccess.Concrete.InMemory
            return _products.Where(p => p.CategoryId == categoryId).ToList();
         }
 
-        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        public List<Product> GetAll(Expression<Func<Product, bool>>? filter = null)
         {
-            throw new NotImplementedException();
+            return _products;
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
         {
             throw new NotImplementedException();
         }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+
         //where komutu ile filtreleme yapıyoruz. p => p.CategoryId == categoryId bu kısımda p her bir product demek.
         //ToList() ile de filtrelenmiş olan listeyi list tipine çeviriyoruz.
 
