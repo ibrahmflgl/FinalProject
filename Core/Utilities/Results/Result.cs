@@ -9,10 +9,16 @@ namespace Core.Utilities.Results
     public class Result : IResult
     {
         //sucses başarılı demek message ise mesaj demek
-        public Result(bool success, string message)
+        public Result(bool success, string message): this(success)
         {
             Success = success;
             Message = message;
+
+        }
+        public Result(bool success)
+        {
+            Success = success;
+           
 
         }
 

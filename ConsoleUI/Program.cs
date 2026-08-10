@@ -14,7 +14,30 @@ static void ProductTest()
    
     ProductManager productManager = new ProductManager(new EfProductDal());
 
-    foreach (var product in productManager.GetProductDetails())
+    var result = productManager.GetProductDetails();
+
+    if (result.Success==true)
+    {
+        foreach (var product in result.Data)
+        {
+            Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+        }
+    }
+    else
+    {
+        Console.WriteLine(result.Message);
+    }
+
+
+
+
+
+
+
+
+
+
+    foreach (var product in productManager.GetProductDetails().Data )
     {
         Console.WriteLine(product.ProductName + "/" + product.CategoryName);
     }
@@ -34,10 +57,4 @@ static void CategoryTest()
     }
 }
 
-
-ProductManager test1 = new ProductManager(new EfProductDal());
-
-test1.GetAllByCategoryId(2).ForEach(p => Console.WriteLine(p.ProductName));
-
-
-
+    
