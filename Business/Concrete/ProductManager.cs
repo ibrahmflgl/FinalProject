@@ -1,10 +1,14 @@
 ﻿using Business.Apstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspecst.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Apstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,16 +59,15 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
-        
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             //kurallar kodu da buraya yazıılr okey ise ekleme işlemi başlatılır 
             //burası bizim return ile döndürmediğimiz yer olcak 
-            if (product.ProductName.Length < 2)
-            {
-                return new ErrorResult(Messages.ProductNameInvalid);
-            }
+
+          
+
             _productDal.Add(product);
 
             return new SuccessResult("ürün eklendi");
